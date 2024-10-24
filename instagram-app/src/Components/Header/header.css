@@ -1,0 +1,91 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    background-color: rgb(235, 234, 234);
+    height: 100vh;
+    position: relative;
+  }
+  header {
+    background-color: white;
+    max-width: 700px;
+    margin-inline: auto;
+    overflow: hidden;
+    padding-bottom: 10px;
+  }
+  .headBl {
+    display: flex;
+    align-items: center;
+    margin-bottom: 26px;
+  }
+  .instaLogo {
+    width: 120px;
+    margin-top: 24px;
+    margin-left: 12px;
+  }
+    
+  .icons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: right;
+    align-items: center;
+    width: 80px;
+    height: 26px;
+    margin-left: auto;
+    margin-right: 16px;
+    margin-top: 26px;
+  }
+  .icons img{
+    width: 26px;
+  }
+  .stories {
+    display: flex;
+    gap: 14px;
+    margin-inline: 12px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .storis {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .stiorisImgBl {
+    border-radius: 50%;
+    border: 1px solid transparent; /* Устанавливаем толщину рамки */
+    background-image: linear-gradient(to right, #833ab4,#fd1d1d,#fcb045); 
+    padding: 2px;
+    width: 70px;
+    height: 70px;
+    margin-bottom: 6px;
+    padding: 2px;
+  }
+  .storisImg {
+    width: 70px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  .addStory {
+    position: absolute;
+    top: 56px;
+    left: 50px;
+    cursor: pointer;
+  }
+  
+  .storisName1 {
+    margin-inline: auto;
+    font-size: 14.4px;
+  }
+  .storisName2,
+  .storisName3,
+  .storisName4,
+  .storisName5 {
+    margin-inline: auto;
+    font-size: 15px;
+  }

@@ -1,0 +1,115 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: rgb(235, 234, 234);
+  position: relative;
+  height: 100vh;
+}
+main {
+    display: flex;
+    flex-direction: column;
+    max-width: 700px;
+    height: calc(100vh - 240px);
+    overflow-y: auto;
+    scrollbar-width: none; 
+    -ms-overflow-style: none;
+    background-color: white;
+    margin-inline: auto;
+    gap: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  .post{
+    margin-bottom: 20px;
+  }
+  .account {
+    display: flex;
+    padding-block: 5px;
+    margin-left: 12px;
+    margin-bottom: 4px;
+    margin-top: 10px;
+  }
+  .avatarBl {
+    height: 42px;
+    width: 42px;
+    cursor: pointer;
+  }
+  .accountAvatar {
+    width: 42px;
+    border-radius: 50%;
+  }
+  .accountName {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 6px;
+    cursor: pointer;
+    font-weight: 300;
+    font-size: 18px;
+  }
+  
+  .other {
+    display: flex;
+    height: 6px;
+    width: 20px;
+    justify-content: space-between;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: 16px;
+    cursor: pointer;
+  }
+  .point {
+    height: 4px;
+    width: 4px;
+    background-color: gray;
+    border-radius: 20px;
+  }
+  .postImg {
+    width: 100%;
+  }
+  .postOptionsBl {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-left: 12px;
+  }
+  .podBlOpions1 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 130px;
+  }
+  .podBlOpions2 {
+    text-align: right;
+    margin-right: 16px;
+  }
+  .like {
+    width: 34px;
+    transition: all 0.2s;
+  }
+  .comment {
+    width: 32px;
+  }
+  .airplane {
+    width: 32px;
+  }
+  .bookmark {
+    width: 30px;
+  }
+  
+  .description {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-inline: 12px;
+  }
+  .postDescription {
+    font-size: 18px;
+    margin-top: 8px;
+    font-weight: 400;
+  }
+  .commentsText {
+    margin-top: 10px;
+    margin-left: 12px;
+    color: rgb(136, 135, 135);
+  }
