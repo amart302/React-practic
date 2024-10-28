@@ -17,58 +17,6 @@ function Main() {
     */
     //componentWillUnmount + componentDidMount
     
-    const postsData = [
-        {
-            id: 1,
-            userName: 'Amart',
-            avatar: 'img/bmw.jpg',
-            imgPost: 'img/bmwM8Competition.jpg',
-            like: false,
-            likes: 93534,
-            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, amet!',
-            commentsNum: '44 435',
-            comments: [
-                {
-                    userName: 'Muhammad',
-                    avatar: 'img/amg.jpg',
-
-                }
-            ]
-        },
-        {
-            id: 2,
-            userName: 'Muhammad',
-            avatar: 'img/amg.jpg',
-            imgPost: 'img/amgPost.jpg',
-            like: false,
-            likes: 56243,
-            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, amet!',
-            commentsNum: '28 347'
-        },
-        {
-            id: 3,
-            userName: 'Arsamak',
-            avatar: 'img/audi.jpg',
-            imgPost: 'img/audiPost.jpg',
-            like: false,
-            likes: 48279,
-            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, amet!',
-            commentsNum: '16 463'
-        },
-        {
-            id: 4,
-            userName: 'Musa',
-            avatar: 'img/bugatti.jpg',
-            imgPost: 'img/bugattiPost.jpg',
-            like: false,
-            likes: 87645,
-            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, amet!',
-            commentsNum: '76 923'
-        },
-    ];
-
-    const [posts, setPosts] = useState(postsData);
-
     // React.useEffect(() => {
     //     console.log('Контент отобразился');
     // }, []);
@@ -84,6 +32,79 @@ function Main() {
     //     };
     // }, []);
 
+    const postsData = [
+        {
+            id: 1,
+            userName: 'Amart',
+            avatar: 'img/bmw.jpg',
+            imgPost: 'img/bmwM8Competition.jpg',
+            like: false,
+            likes: 93534,
+            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, amet!',
+            comments: [
+                {
+                    avatar: 'img/amg.jpg',
+                    userName: 'Muhammad',
+                    comment: 'Машина кайф'
+                },
+                {
+                    avatar: 'img/audi.jpg',
+                    userName: 'Arsamak',
+                    comment: 'Моя лучше'
+                }
+            ]
+        },
+        {
+            id: 2,
+            userName: 'Muhammad',
+            avatar: 'img/amg.jpg',
+            imgPost: 'img/amgPost.jpg',
+            like: false,
+            likes: 56243,
+            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, amet!',
+            comments: [
+                {
+                    avatar: 'img/bugatti.jpg',
+                    userName: 'Musa',
+                    comment: 'Мухаммад твоя ??'
+                }
+            ]
+        },
+        {
+            id: 3,
+            userName: 'Arsamak',
+            avatar: 'img/audi.jpg',
+            imgPost: 'img/audiPost.jpg',
+            like: false,
+            likes: 48279,
+            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, amet!',
+            comments: [
+                {
+                    userName: 'Adam',
+                    avatar: 'img/granta.jpg',
+                    comment: 'Арсамак 14ю продал ??'
+                },
+                {
+                    avatar: 'img/audi.jpg',
+                    userName: 'Arsamak',
+                    comment: 'Конечно, надо расти'
+                }
+            ]
+        },
+        {
+            id: 4,
+            userName: 'Musa',
+            avatar: 'img/bugatti.jpg',
+            imgPost: 'img/bugattiPost.jpg',
+            like: false,
+            likes: 87645,
+            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, amet!',
+            comments: []  
+        },
+    ];
+
+    const [posts, setPosts] = useState(postsData);
+
     const handleLike = (id) => {
         setPosts(posts.map(post => {
                 if(post.id == id){
@@ -96,58 +117,112 @@ function Main() {
     };
 
     const [commentStyles, setCommentStyles] = useState({
-        position: 'absolute',
+        position: 'fixed',
         bottom: '-110vh'
     })
 
+    const [selectedComments, setSelectedComments] = useState([]);
+    const [selectId, setId] = useState(0);
+    
+    function getPostComments(id){
+        setCommentStyles({ position: 'fixed', bottom: '0', transition: 'all 0.6s'});
+        let commentsArray = [];
+        posts.map(post => {
+            if(post.id == id){
+                commentsArray = post.comments;
+                setSelectedComments(commentsArray);
+                setId(id);
+            }
+        })
+        
+    }
+
+    const [inputValue, setInputValue] = useState('');
+
+    const handleInputChange = (event) => {
+            setInputValue(event.target.value);
+    };
+
+    const saveSubmit = () => {
+        
+            setPosts(posts.map(post => {
+                if(post.id == selectId){
+                    const newComment = {
+                        userName: 'Amart',
+                        avatar: 'img/bmw.jpg',
+                        comment: inputValue
+                    }
+                    const updatedComments = [...post.comments, newComment];
+                    setSelectedComments(updatedComments);
+                    setInputValue('');
+                    return { ...post, comments: updatedComments };
+                }
+                return post;
+            })
+        );
+    };
     return (
         <main>
-            {posts.map(post => (
-                <div className="post">
-                    <div className="account-parent">
-                        <div className="account-info">
-                            <div className="avatar-block">
-                                <img className="accountAvatar" src={post.avatar} alt="" />
+            <div className="main">
+                {posts.map(post => (
+                    <div className="post">
+                        <div className="account-parent">
+                            <div className="account-info">
+                                <div className="avatar-block">
+                                    <img className="accountAvatar" src={post.avatar} alt="" />
+                                </div>
+                            <span className="accountName">{post.userName}</span>
                             </div>
-                        <span className="accountName">{post.userName}</span>
+                            <div className="other">
+                                <div className="point"></div>
+                                <div className="point"></div>
+                                <div className="point"></div>
+                            </div>
                         </div>
-                        <div className="other">
-                            <div className="point"></div>
-                            <div className="point"></div>
-                            <div className="point"></div>
+                        <div className="post-block">
+                            <img className="postImg" src={post.imgPost} alt="" />
                         </div>
-                    </div>
-                    <div className="post-block">
-                        <img className="postImg" src={post.imgPost} alt="" />
-                    </div>
-                    <div className="postOptions-block">
-                        <div className="podBlOpions1">
-                            <img className="likeBtn" onClick={() => handleLike(post.id)} src={post.like ? 'img/redHeartIcon.svg' : 'img/heartIcon.svg'} alt="" />
-                            <img className="commentBtn" onClick={() => setCommentStyles({ position: 'absolute', bottom: '0', transition: 'all 0.6s'})} src='img/commentIcon.svg' alt="" />
-                            <img className="shareBtn" src='img/shareIcon.svg' alt="" />
+                        <div className="postOptions-block">
+                            <div className="podBlOpions1">
+                                <img className="likeBtn" onClick={() => handleLike(post.id)} src={post.like ? 'img/redHeartIcon.svg' : 'img/heartIcon.svg'} alt="" />
+                                <img className="commentBtn" onClick={() => getPostComments(post.id)} src='img/commentIcon.svg' alt="" />
+                                <img className="shareBtn" src='img/shareIcon.svg' alt="" />
+                            </div>
+                            <div className="podBlOpions2">
+                                <img className="bookmarkBtn" src='img/bookmarkIcon.svg' alt="" />
+                            </div>
                         </div>
-                        <div className="podBlOpions2">
-                            <img className="bookmarkBtn" src='img/bookmarkIcon.svg' alt="" />
+                        <div className="description">
+                            <p className="likeNum">Нравится: <span className="likesNum">{post.likes}</span></p>
+                            <p className="postDescription">{post.userName}: <span className="descriptionText">{post.description}</span></p>
                         </div>
+                        <div className="commentsNum">View all comments({post.comments.length})</div>
                     </div>
-                    <div className="description">
-                        <p className="likeNum">Нравится: <span className="likesNum">{post.likes}</span></p>
-                        <p className="postDescription">{post.userName}: <span className="descriptionText">{post.description}</span></p>
-                    </div>
-                    <div className="commentsNum">View all comments({post.commentsNum})</div>
-                </div>
-            ))}
+                ))}
 
-
+            </div>
             <div className="comment-block-parent" style={commentStyles}>
                 <div className="comment-block">
-                    <hr />
+                    <hr onClick={() => setCommentStyles({ position: 'fixed', bottom: '-110vh', transition: 'all 0.6s'})}/>
                     <h3>Комментарии</h3>
                     <div className="comments-block-podBlock">
+
+                    {(selectedComments.length > 0) ? (selectedComments.map(comment => (
+                        <div className="comment">
+                            <img className="accountAvatar" src={comment.avatar} alt="" />
+                            <div>
+                                <p className="accountName">{comment.userName}</p>
+                                <p>{comment.comment}</p>
+                            </div>
+                        </div>
+                    ))
+                        
+                    ) : (<p className="noComments">Комментариев пока нету</p>)}
+
                         <div className="addComment-block">
                             <img className="accountAvatar" src="img/bmw.jpg" alt="" />
-                            <input type="text" placeholder="Добавьте комментарий"/>
-                            <button>🡡</button>
+                            <input type="text" placeholder="Добавьте комментарий" value={inputValue} onChange={handleInputChange}/>
+                            <button onClick={saveSubmit}>🡡</button>
                         </div>
                     </div>
                 </div>
