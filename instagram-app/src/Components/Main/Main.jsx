@@ -84,10 +84,12 @@ function Main() {
     };
 
     const handleLike = (id) => {
-        setPosts(prevPosts => 
-            prevPosts.map(post => 
-                post.id == id ? { ...post, like: !post.like, likes: post.likes + (post.like ? -1 : 1) } : post
-            )
+        setPosts(posts.map(post => {
+                if(post.id == id){
+                    return { ...post, like: !post.like, likes: post.likes + (post.like ? -1 : 1)}
+                }
+                return post;
+            })
         );
         
     };
