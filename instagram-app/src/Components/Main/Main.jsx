@@ -26,7 +26,14 @@ function Main() {
             like: false,
             likes: 93534,
             description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, amet!',
-            comments: '44 435'
+            commentsNum: '44 435',
+            comments: [
+                {
+                    userName: 'Muhammad',
+                    avatar: 'img/amg.jpg',
+
+                }
+            ]
         },
         {
             id: 2,
@@ -36,7 +43,7 @@ function Main() {
             like: false,
             likes: 56243,
             description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, amet!',
-            comments: '28 347'
+            commentsNum: '28 347'
         },
         {
             id: 3,
@@ -46,7 +53,7 @@ function Main() {
             like: false,
             likes: 48279,
             description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, amet!',
-            comments: '16 463'
+            commentsNum: '16 463'
         },
         {
             id: 4,
@@ -56,32 +63,26 @@ function Main() {
             like: false,
             likes: 87645,
             description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, amet!',
-            comments: '76 923'
+            commentsNum: '76 923'
         },
     ];
 
-    const [count, setCount] = useState(0);
     const [posts, setPosts] = useState(postsData);
-    const [component, setComponent] = useState('abc');
 
-    React.useEffect(() => {
-        console.log('Контент отобразился');
-    }, []);
+    // React.useEffect(() => {
+    //     console.log('Контент отобразился');
+    // }, []);
 
-    React.useEffect(() => {
-        console.log('Контент обновился');
-    }, [posts, count]);
+    // React.useEffect(() => {
+    //     console.log('Контент обновился');
+    // }, [posts]);
 
-    React.useEffect(() => {
-        console.log('Контент');
-        return () => {
-            console.log('Компонент удален');
-        };
-    }, []);
-
-    const styles = {
-        cursor: 'pointer',
-    };
+    // React.useEffect(() => {
+    //     console.log('Контент');
+    //     return () => {
+    //         console.log('Компонент удален');
+    //     };
+    // }, []);
 
     const handleLike = (id) => {
         setPosts(posts.map(post => {
@@ -94,48 +95,63 @@ function Main() {
         
     };
 
+    const [commentStyles, setCommentStyles] = useState({
+        position: 'absolute',
+        bottom: '-110vh'
+    })
+
     return (
         <main>
             {posts.map(post => (
                 <div className="post">
-                    {/* {component}
-                    <button onClick={() => setComponent('')}>Delete component</button>
-                    <div>
-                        <button onClick={() => (count > 0) ? setCount(count - 1) : count}>-</button>
-                        <p>{count}</p>
-                        <button onClick={() => setCount(count + 1)}>+</button>
-                    </div> */}
-                    <div className="account">
-                        <div className="avatarBl">
-                            <img className="accountAvatar" src={post.avatar} alt="" />
-                        </div>
+                    <div className="account-parent">
+                        <div className="account-info">
+                            <div className="avatar-block">
+                                <img className="accountAvatar" src={post.avatar} alt="" />
+                            </div>
                         <span className="accountName">{post.userName}</span>
+                        </div>
                         <div className="other">
                             <div className="point"></div>
                             <div className="point"></div>
                             <div className="point"></div>
                         </div>
                     </div>
-                    <div className="postBl">
+                    <div className="post-block">
                         <img className="postImg" src={post.imgPost} alt="" />
                     </div>
-                    <div className="postOptionsBl">
+                    <div className="postOptions-block">
                         <div className="podBlOpions1">
-                            <img className="like" onClick={() => handleLike(post.id)} style={styles} src={post.like ? 'img/redHeart.png' : 'img/Heart.svg'} alt="" />
-                            <img className="comment" style={styles} src='img/Comment.svg' alt="" />
-                            <img className="airplane" style={styles} src='img/share.svg' alt="" />
+                            <img className="likeBtn" onClick={() => handleLike(post.id)} src={post.like ? 'img/redHeartIcon.svg' : 'img/heartIcon.svg'} alt="" />
+                            <img className="commentBtn" onClick={() => setCommentStyles({ position: 'absolute', bottom: '0', transition: 'all 0.6s'})} src='img/commentIcon.svg' alt="" />
+                            <img className="shareBtn" src='img/shareIcon.svg' alt="" />
                         </div>
                         <div className="podBlOpions2">
-                            <img className="bookmark" style={styles} src='img/bookmark.svg' alt="" />
+                            <img className="bookmarkBtn" src='img/bookmarkIcon.svg' alt="" />
                         </div>
                     </div>
                     <div className="description">
-                        <p className="likes">Нравится: <span className="likesNum">{post.likes}</span></p>
+                        <p className="likeNum">Нравится: <span className="likesNum">{post.likes}</span></p>
                         <p className="postDescription">{post.userName}: <span className="descriptionText">{post.description}</span></p>
                     </div>
-                    <div className="commentsText">View all comments({post.comments})</div>
+                    <div className="commentsNum">View all comments({post.commentsNum})</div>
                 </div>
             ))}
+
+
+            <div className="comment-block-parent" style={commentStyles}>
+                <div className="comment-block">
+                    <hr />
+                    <h3>Комментарии</h3>
+                    <div className="comments-block-podBlock">
+                        <div className="addComment-block">
+                            <img className="accountAvatar" src="img/bmw.jpg" alt="" />
+                            <input type="text" placeholder="Добавьте комментарий"/>
+                            <button>🡡</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
     );
 }

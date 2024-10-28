@@ -15,9 +15,10 @@
     overflow: hidden;
     padding-bottom: 10px;
   }
-  .headBl {
+  .head-block {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     margin-bottom: 26px;
   }
   .instaLogo {
@@ -33,12 +34,12 @@
     align-items: center;
     width: 80px;
     height: 26px;
-    margin-left: auto;
     margin-right: 16px;
     margin-top: 26px;
   }
   .icons img{
-    width: 26px;
+    width: 28px;
+    height: 28px;
   }
   .stories {
     display: flex;
@@ -58,7 +59,6 @@
   }
   .stiorisImgBl {
     border-radius: 50%;
-    border: 1px solid transparent; /* Устанавливаем толщину рамки */
     background-image: linear-gradient(to right, #833ab4,#fd1d1d,#fcb045); 
     padding: 2px;
     width: 70px;

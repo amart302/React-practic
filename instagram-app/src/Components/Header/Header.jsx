@@ -43,11 +43,11 @@ function Header() {
     }
     return (
         <header>
-            <div class="headBl">
+            <div class="head-block">
                 <img class="instaLogo" src='img/Instagram_logo.svg' alt="" />
                 <div class="icons">
-                <img src='img/Heart.svg' alt="" style={styles}/>
-                <img src='img/Share.svg' alt="" style={styles}/>
+                <img src='img/heartIcon.svg' alt="" style={styles}/>
+                <img src='img/shareIcon.svg' alt="" style={styles}/>
                 </div>
             </div>
 
@@ -56,7 +56,7 @@ function Header() {
                     <div class="stiorisImgBl">
                         <img class="storisImg" src='img/bmw.jpg' alt="" />
                     </div>
-                    <img class="addStory" src='img/AddStory.svg' alt="" />
+                    <img class="addStory" src='img/addStory.svg' alt="" />
                     <span class="storisName1">Your story</span>
                 </div>
 
@@ -70,61 +70,6 @@ function Header() {
                         </div>
                     ))
                 }
-                {/* <div class="storis">
-                    <div class="stiorisImgBl">
-                        <img class="storisImg" src={amg} alt="" />
-                    </div>
-                    <span class="storisName2">Muhammad</span>
-                </div>
-
-                <div class="storis">
-                    <div class="stiorisImgBl">
-                        <img class="storisImg" src={audi} alt="" />
-                    </div>
-                    <span class="storisName3">Arsamak</span>
-                </div>
-
-                <div class="storis">
-                    <div class="stiorisImgBl">
-                        <img class="storisImg" src={granta} alt="" />
-                    </div>
-                    <span class="storisName4">Adam</span>
-                </div>
-
-                <div class="storis">
-                    <div class="stiorisImgBl">
-                        <img class="storisImg" src={bugatti} alt="" />
-                    </div>
-                    <span class="storisName5">Musa</span>
-                </div>
-
-                <div class="storis">
-                    <div class="stiorisImgBl">
-                        <img class="storisImg" src={amg} alt="" />
-                    </div>
-                    <span class="storisName2">Muhammad</span>
-                </div>
-
-                <div class="storis">
-                    <div class="stiorisImgBl">
-                        <img class="storisImg" src={audi} alt="" />
-                    </div>
-                    <span class="storisName3">Arsamak</span>
-                </div>
-
-                <div class="storis">
-                    <div class="stiorisImgBl">
-                        <img class="storisImg" src={granta} alt="" />
-                    </div>
-                    <span class="storisName4">Adam</span>
-                </div>
-
-                <div class="storis">
-                    <div class="stiorisImgBl">
-                        <img class="storisImg" src={bugatti} alt="" />
-                    </div>
-                    <span class="storisName5">Musa</span>
-                </div> */}
             </div>
         </header>
     )

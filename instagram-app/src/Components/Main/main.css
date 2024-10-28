@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 * {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Roboto", sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -24,29 +26,35 @@ main {
   .post{
     margin-bottom: 20px;
   }
-  .account {
-    display: flex;
-    padding-block: 5px;
-    margin-left: 12px;
-    margin-bottom: 4px;
-    margin-top: 10px;
+  .account-parent {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 5px;
+    padding-inline: 12px;
+    margin-bottom: 10px;
   }
-  .avatarBl {
-    height: 42px;
-    width: 42px;
+  .avatar-block {
     cursor: pointer;
   }
   .accountAvatar {
-    width: 42px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
   }
   .accountName {
     margin-top: auto;
     margin-bottom: auto;
-    margin-left: 6px;
     cursor: pointer;
     font-weight: 300;
     font-size: 18px;
+  }
+  .account-info{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .account-info span{
+    margin: 0;
   }
   
   .other {
@@ -57,7 +65,6 @@ main {
     margin-top: auto;
     margin-bottom: auto;
     margin-left: auto;
-    margin-right: 16px;
     cursor: pointer;
   }
   .point {
@@ -69,32 +76,43 @@ main {
   .postImg {
     width: 100%;
   }
-  .postOptionsBl {
+  .postOptions-block {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    margin-left: 12px;
+    margin-inline: 12px;
+    margin-top: 5px;
   }
   .podBlOpions1 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    align-items: center;
     width: 130px;
   }
   .podBlOpions2 {
-    text-align: right;
-    margin-right: 16px;
+    display: flex;
+    justify-content: right;
+    align-items: center;
   }
-  .like {
-    width: 34px;
+  .likeBtn {
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
     transition: all 0.2s;
   }
-  .comment {
-    width: 32px;
+  .commentBtn {
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
   }
-  .airplane {
-    width: 32px;
+  .shareBtn {
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
   }
-  .bookmark {
-    width: 30px;
+  .bookmarkBtn {
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
   }
   
   .description {
@@ -108,8 +126,59 @@ main {
     margin-top: 8px;
     font-weight: 400;
   }
-  .commentsText {
+  .commentsNum {
     margin-top: 10px;
     margin-left: 12px;
     color: rgb(136, 135, 135);
+  }
+
+  .comment-block-parent{
+    /* display: none; */
+    height: 100vh;
+    width: 100%;
+  }
+  .comment-block{
+    max-width: 700px;
+    margin-inline: auto;
+    background-color: white;
+    z-index: 1;
+  }
+  .comment-block h3{
+    text-align: center;
+    font-weight: 500;
+  }
+  .comment-block hr{
+    height: 6px;
+    width: 30px;
+    margin-inline: auto;
+    background-color: #DBDBDB;
+    border: none;
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  .addComment-block{
+    width: calc(100% - 24px);
+    position: absolute;
+    bottom: 30px;
+    padding-inline: 12px;
+    display: grid;
+    grid-template-columns: 52px 1fr 0.2fr;
+    gap: 10px;
+    align-items: center;
+  }
+  .addComment-block input{
+    border: none;
+    outline: none;
+    font-size: 18px;
+    font-family: "Roboto", sans-serif;
+  }
+  .addComment-block button{
+    height: 40px;
+    border: none;
+    font-size: 22px;
+    background-color: rgb(0, 102, 255);
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
   }
