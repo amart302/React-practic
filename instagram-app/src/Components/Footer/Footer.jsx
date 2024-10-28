@@ -1,21 +1,16 @@
 import React from "react";
 import './footer.css';
-import home from '../../img/Home.svg';
-import search from '../../img/Search.svg';
-import reels from '../../img/Reels.svg';
-import bmw from '../../img/bmw.jpg';
-import addIcon from '../../img/AddIcon.svg';
 
 function Footer(){
     
     return(
         <footer>
             <div class="foot-block">
-                <img class="home" src={home} alt="" />
-                <img class="search" src={search} alt="" />
-                <img class="shop" src={addIcon} alt="" />
-                <img class="reels" src={reels} alt="" />
-                <img class="footAvatar" src={bmw} alt="" />
+                <img class="home" src='img/Home.svg' alt="" />
+                <img class="search" src='img/Search.svg' alt="" />
+                <img class="shop" src='img/AddIcon.svg' alt="" />
+                <img class="reels" src='img/Reels.svg' alt="" />
+                <img class="footAvatar" src='img/bmw.jpg' alt="" />
             </div>
         </footer>
     )

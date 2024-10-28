@@ -1,98 +1,141 @@
-import React from "react";
+import React, { useState } from "react";
 import './main.css';
-import bmw from '../../img/bmw.jpg';
-import bmwM8Competition from '../../img/bmwM8Competition.jpg';
-import heart from '../../img/Heart.svg';
-import comment from '../../img/Comment.svg';
-import share from '../../img/Share.svg';
-import bookmark from '../../img/Bookmark.svg';
-import amg from '../../img/amg.jpg';
-import audi from '../../img/audi.jpg';
-import bugatti from '../../img/bugatti.jpg';
-import amgPost from '../../img/amgPost.jpg';
-import audiPost from '../../img/audiPost.jpg'
-import bugattiPost from '../../img/bugattiPost.jpg'
 
-function Main(){
+function Main() {
 
-    const posts = [
+    /* componentDidMount() — это метод жизненного цикла компонента в React, 
+     который вызывается один раз после того, как компонент будет смонтирован (вставлен) в дерево DOM. */
+
+    /*
+        componentDidUpdate() — это метод жизненного цикла в React, который вызывается сразу
+        после обновления компонента из-за изменения состояния или props.
+    */
+
+    /*
+        Метод componentWillUnmount является одним из методов жизненного цикла в классовых 
+        компонентах React. Он вызывается непосредственно перед тем, как компонент будет удален из DOM. Этот метод используется для выполнения очистки, такой как отмена подписок, таймеров или остановка сетевых запросов, чтобы избежать утечек памяти.
+    */
+    //componentWillUnmount + componentDidMount
+    
+    const postsData = [
         {
+            id: 1,
             userName: 'Amart',
-            avatar: bmw,
-            imgPost: bmwM8Competition,
-            likes: '93 534',
+            avatar: 'img/bmw.jpg',
+            imgPost: 'img/bmwM8Competition.jpg',
+            like: false,
+            likes: 93534,
             description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, amet!',
             comments: '44 435'
         },
         {
+            id: 2,
             userName: 'Muhammad',
-            avatar: amg,
-            imgPost: amgPost,
-            likes: '56 243',
+            avatar: 'img/amg.jpg',
+            imgPost: 'img/amgPost.jpg',
+            like: false,
+            likes: 56243,
             description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, amet!',
             comments: '28 347'
         },
         {
+            id: 3,
             userName: 'Arsamak',
-            avatar: audi,
-            imgPost: audiPost,
-            likes: '48 279',
+            avatar: 'img/audi.jpg',
+            imgPost: 'img/audiPost.jpg',
+            like: false,
+            likes: 48279,
             description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, amet!',
             comments: '16 463'
         },
         {
+            id: 4,
             userName: 'Musa',
-            avatar: bugatti,
-            imgPost: bugattiPost,
-            likes: '87 645',
+            avatar: 'img/bugatti.jpg',
+            imgPost: 'img/bugattiPost.jpg',
+            like: false,
+            likes: 87645,
             description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, amet!',
             comments: '76 923'
         },
-    ]
+    ];
 
-    const styles ={
+    const [count, setCount] = useState(0);
+    const [posts, setPosts] = useState(postsData);
+    const [component, setComponent] = useState('abc');
+
+    React.useEffect(() => {
+        console.log('Контент отобразился');
+    }, []);
+
+    React.useEffect(() => {
+        console.log('Контент обновился');
+    }, [posts, count]);
+
+    React.useEffect(() => {
+        console.log('Контент');
+        return () => {
+            console.log('Компонент удален');
+        };
+    }, []);
+
+    const styles = {
         cursor: 'pointer',
-    }
+    };
 
-    return(
+    const handleLike = (id) => {
+        setPosts(prevPosts => 
+            prevPosts.map(post => 
+                post.id == id ? { ...post, like: !post.like, likes: post.likes + (post.like ? -1 : 1) } : post
+            )
+        );
+        
+    };
+
+    return (
         <main>
-            {
-                posts.map(post => (
-                    <div class="post">
-                        <div class="account">
-                            <div class="avatarBl">
-                                <img class="accountAvatar" src={post.avatar} alt="" />
+            {posts.map(post => (
+                <div className="post">
+                    {/* {component}
+                    <button onClick={() => setComponent('')}>Delete component</button>
+                    <div>
+                        <button onClick={() => (count > 0) ? setCount(count - 1) : count}>-</button>
+                        <p>{count}</p>
+                        <button onClick={() => setCount(count + 1)}>+</button>
+                    </div> */}
+                    <div className="account">
+                        <div className="avatarBl">
+                            <img className="accountAvatar" src={post.avatar} alt="" />
                         </div>
-                        <span class="accountName">{post.userName}</span>
-                        <div class="other">
-                            <div class="point"></div>
-                            <div class="point"></div>
-                            <div class="point"></div>
+                        <span className="accountName">{post.userName}</span>
+                        <div className="other">
+                            <div className="point"></div>
+                            <div className="point"></div>
+                            <div className="point"></div>
                         </div>
                     </div>
-                <div class="postBl">
-                    <img class="postImg" src={post.imgPost} alt="" />
-                </div>
-                <div class="postOptionsBl">
-                    <div class="podBlOpions1">
-                        <img class="like" style={styles} src={heart} alt="" />
-                        <img class="comment" style={styles} src={comment} alt="" />
-                        <img class="airplane" style={styles} src={share} alt="" />
+                    <div className="postBl">
+                        <img className="postImg" src={post.imgPost} alt="" />
                     </div>
-                    <div class="podBlOpions2">
-                        <img class="bookmark" style={styles} src={bookmark} alt="" />
+                    <div className="postOptionsBl">
+                        <div className="podBlOpions1">
+                            <img className="like" onClick={() => handleLike(post.id)} style={styles} src={post.like ? 'img/redHeart.png' : 'img/Heart.svg'} alt="" />
+                            <img className="comment" style={styles} src='img/Comment.svg' alt="" />
+                            <img className="airplane" style={styles} src='img/share.svg' alt="" />
+                        </div>
+                        <div className="podBlOpions2">
+                            <img className="bookmark" style={styles} src='img/bookmark.svg' alt="" />
+                        </div>
                     </div>
+                    <div className="description">
+                        <p className="likes">Нравится: <span className="likesNum">{post.likes}</span></p>
+                        <p className="postDescription">{post.userName}: <span className="descriptionText">{post.description}</span></p>
+                    </div>
+                    <div className="commentsText">View all comments({post.comments})</div>
                 </div>
-                <div class="description">
-                    <p class="likes" >Нравится: <span class="likesNum">{post.likes}</span></p>
-                    <p class="postDescription">Amart: <span class="descriptionText">{post.description}</span></p>
-                </div>
-                <div class="commentsText">View all comments({post.comments})</div>
-            </div>
-                ))
-            }
+            ))}
         </main>
-    )
+    );
 }
 
 export default Main;
