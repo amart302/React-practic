@@ -6,7 +6,7 @@ footer{
   .foot-block {
     max-width: 1000px;
     padding-block: 10px;
-    /* margin-inline: auto; */
+    margin-inline: auto;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     justify-items: center;
